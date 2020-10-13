@@ -1,0 +1,15 @@
+{
+    "demo": {
+        "title": "Übersetzungs-Demo",
+        "text": "﻿Dies ist eine einfache Applikation um die Funktionen von ngx-transalte zu demonstrieren.",
+        "greeting": "Hallo {{name}}!"
+    },
+    "cameras": {
+        "title": "Kameras",
+        "settings": "die Einstellungen",
+        "reporting": "Berichterstattung",
+        "logout": "AUSLOGGEN",
+        "pass": "Bestehen",
+        "fail": "Scheitern"
+    }
+}

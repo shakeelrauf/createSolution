@@ -1,0 +1,14 @@
+{
+    "demo": {
+        "title": "Translation demo",
+        "text": "This is a simple demonstration app for ngx-translate"
+    },
+    "cameras": {
+        "title": "Cameras",
+        "settings": "Settings",
+        "reporting": "Reporting",
+        "logout": "LOGOUT",
+        "pass": "Pass",
+        "fail": "Fail"
+    }
+}

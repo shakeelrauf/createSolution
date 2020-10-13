@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary text-white">
+  <a class="navbar-brand">
+    LOGO
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item">{{'cameras.settings' | translate}}</a>
+          <a class="dropdown-item">{{'cameras.reporting' | translate}}</a>
+          <a class="dropdown-item">{{'cameras.title' | translate}}</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item"  (click)="useLanguage('en')">en</a>
+          <a class="dropdown-item" (click)="useLanguage('de')">de</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0"  *ngIf="loginApp">
+      <span class="d-flex text-align-center align-items-center mr-2 h5">{{user?.name}}</span>
+      <button (click)="logout()" class="btn btn-success my-2 my-sm-0">{{'cameras.logout' | translate}}</button>
+    </form>
+  </div>
+</nav>
+
+<div class="row login-container">
+  <div class="col-lg-4 my-5" *ngFor="let item of cameras">
+    <div class="card">
+      <img class="card-img-top" [src]="item.img" alt="Bologna">
+      <div class="card-body">
+        <p class="card-text">{{item.id}}</p>
+        <p [ngClass]="{'text-success': item.status, 'text-danger': !item.status}">
+          {{
+            (item.status ? 'cameras.pass': 'cameras.fail') | translate
+          }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
