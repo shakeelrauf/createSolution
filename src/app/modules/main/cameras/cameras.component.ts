@@ -25,8 +25,6 @@ export class CamerasComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loginApp = this.localStorage.getLocal('login');
-    this.user = this.localStorage.getLocal('user');
     this.getCameras()
     setInterval(() => {
       this.getCameras();
@@ -34,8 +32,8 @@ export class CamerasComponent implements OnInit {
   }
 
   logout() {
-    this.localStorage.setLocal('user', null)
-    this.localStorage.setLocal('login', false)
+    this.localStorage.setItem('user', null)
+    this.localStorage.setItem('login', false)
     this.router.navigate(['/login'])
   }
 

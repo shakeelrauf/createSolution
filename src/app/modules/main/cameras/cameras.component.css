@@ -60,3 +60,7 @@
 .darken-grey-text {
     color: #2E2E2E;
 }
+
+.card-img-top{
+    height: 350px;
+}

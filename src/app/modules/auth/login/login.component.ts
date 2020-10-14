@@ -22,8 +22,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loginApp = this.localStorage.getLocal('login');
-    this.user = this.localStorage.getLocal('user');
     this.loginForm = this.fb.group({
       username: [
         null,
@@ -41,20 +39,11 @@ export class LoginComponent implements OnInit {
     let password = this.loginForm.value.password;
     this.showError = false;
     if(user == 'Admin' && password == 'Password'){
-      this.localStorage.setLocal('login', true)
-      this.localStorage.setLocal('user', {name: user})
-      this.loginApp = this.localStorage.getLocal('login');
-      this.user = this.localStorage.getLocal('user');
+      this.localStorage.setItem('login', true)
+      this.localStorage.setItem('user', {name: user})
       this.router.navigate(['/cameras'])
     }else{
       this.showError = true
     }
-  }
-
-  logout() {
-    this.localStorage.setLocal('user', null)
-    this.localStorage.setLocal('login', false)
-    this.loginApp = this.localStorage.getLocal('login');
-    this.user = this.localStorage.getLocal('user');
   }
 }

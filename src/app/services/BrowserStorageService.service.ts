@@ -1,61 +1,24 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/internal/Subject';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BrowserStorageService {
-  constructor() { }
+  private storageSub= new Subject<any>();
 
-  getSession(key: string): any {
-    const data = window.sessionStorage.getItem(key);
-    if (data) {
-      return JSON.parse(data);
-    } else {
-      return null;
-    }
+  watchStorage(): Observable<any> {
+    return this.storageSub.asObservable();
   }
 
-  setSession(key: string, value: any): void {
-    const data = value === undefined ? '' : JSON.stringify(value);
-    window.sessionStorage.setItem(key, data);
+  setItem(key: string, data: any) {
+    localStorage.setItem(key, JSON.stringify(data));
+    this.storageSub.next(localStorage);
   }
 
-  removeSession(key: string): void {
-    window.sessionStorage.removeItem(key);
+  removeItem(key) {
+    localStorage.removeItem(key);
+    this.storageSub.next(localStorage);
   }
-
-  removeAllSessions(): void {
-    for (const key in window.sessionStorage) {
-      if (window.sessionStorage.hasOwnProperty(key)) {
-        this.removeSession(key);
-      }
-    }
-  }
-
-  getLocal(key: string): any {
-    const data = window.localStorage.getItem(key);
-    if (data) {
-      return JSON.parse(data);
-    } else {
-      return null;
-    }
-  }
-
-  setLocal(key: string, value: any): void {
-    const data = value === undefined ? '' : JSON.stringify(value);
-    window.localStorage.setItem(key, data);
-  }
-
-  removeLocal(key: string): void {
-    window.localStorage.removeItem(key);
-  }
-
-  removeAllLocals(): void {
-    for (const key in window.localStorage) {
-      if (window.localStorage.hasOwnProperty(key)) {
-        this.removeLocal(key);
-      }
-    }
-  }
-    
 }

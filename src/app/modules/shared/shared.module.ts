@@ -1,14 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CamerasComponent } from './cameras/cameras.component';
-import { MainRoutingModule } from './main-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { SettingsComponent } from './settings/settings.component';
-import { ReportingComponent } from './reporting/reporting.component';
-import { SharedModule } from '../shared/shared.module';
+import { NavbarComponent } from './navbar/navbar.component';
+import { RouterModule } from '@angular/router';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
@@ -16,16 +13,14 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 
 @NgModule({
   declarations: [
-    CamerasComponent,
-    SettingsComponent,
-    ReportingComponent
+    NavbarComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MainRoutingModule, 
+    RouterModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -33,8 +28,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         deps: [HttpClient]
       }
      }),
-    SharedModule,
   ],
-
+  exports: [
+    NavbarComponent
+  ]
 })
-export class MainModule { }
+export class SharedModule { }
